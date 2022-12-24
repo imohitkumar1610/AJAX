@@ -11,8 +11,10 @@ function buttonClickHandler(){
     const xhr = new XMLHttpRequest();
 
     //open the object
-    xhr.open('GET','mohit.txt', true ); //xhr.open('typr of request', 'source of data', 'sunchronous or asynchronous') true for asynchronous and false for the otherx
-
+    // xhr.open('GET','https://jsonplaceholder.typicode.com/todos/1', true ); //xhr.open('typr of request', 'source of data', 'sunchronous or asynchronous') true for asynchronous and false for the otherx
+ // use this for post request
+ xhr.open('POST','https://dummyjson.com/posts/add', true );
+ xhr.getResponseHeader('content-type','application/JSON');
     //what to do on progress 
     xhr.onprogress = function(){
         console.log('on progress'); 
@@ -30,10 +32,15 @@ function buttonClickHandler(){
             console.log('some error occured');
         }
     }
+    // send this request
+    params = ` {"name":"test2154","salary":"125"."age":"55"}`;
 
     //send the request
-    xhr.send();
+    xhr.send(params);
+    //this might show before th response sent by the server as we are using asynchronous call
+    console.log('we are done');
 }
+
 
 
 
