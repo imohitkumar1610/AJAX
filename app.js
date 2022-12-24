@@ -41,6 +41,38 @@ function buttonClickHandler(){
     console.log('we are done');
 }
 
+let popBtn = document.getElementById('popBtn');
+popBtn.addEventListener('click',pophandeler);
+
+function pophandeler(){
+    console.log('you have clicked the pophandeler');
+
+    //instantiate an xhr object
+    const xhr = new XMLHttpRequest();
+
+    //open the object
+    xhr.open('GET','https://dummy.restapiexample.com/api/v1/employees', true ); 
+
+    
+
+    //what to do when response is ready
+    xhr.onload = function(){
+        if(this.status === 200){//200 is the response code of http which basically means all ohk 
+            let obj = response.parse(this.responseText);
+            console.log(obj);
+            let list = document.getElementById('list');
+            for (key in obj){
+                str += `<li>${obj[key].employee_name}</li>}`;
+            }
+            list.innerHtml = str;
+        }else{
+            console.log('some error occured');
+        }
+    }
+    //send the request
+    xhr.send();
+    console.log('we are done fetching employees');
+}
 
 
 
